@@ -1,0 +1,17 @@
+.home .news .news-title {
+    font-family: Verdana, sans-serif;
+    border-bottom: 3px solid #337ab7;
+    padding-bottom: 15px;
+    text-align: center;
+    margin: 40px 0 50px 0;
+}
+.home .news article {
+    margin-bottom: 50px;
+}
+.home .news article header .date-published {
+    color: gray;
+    font-style: italic;
+}
+.home .news article .article-title {
+    font-size: 26px;
+}
