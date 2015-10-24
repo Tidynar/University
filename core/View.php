@@ -2,20 +2,34 @@
 class View {
 	public $layout = 'main';
 
-	public function load($template, $data = null, $layout = null) {
+	public function load($template, $data = null, $layout = '') {
 
-		if(!is_null($layout)) {
+		if ( ! empty( $layout ) ) {
 			$this->layout = $layout;
 		}
 
-		$templatefile = ABSPATH . '/views/' . $template . '.php';
+		$template = ABSPATH . '/views/' . $template . '.php';
 
-		if($this->layout == 'login') {
-			include($templatefile);
-		} else {
+
+		if(file_exists($template)) {
+			$out = '';
+			ob_start();
+
+			$title   = $data['title'];
+			if(isset($data['title']))
+			$body_id = $data['body_id'];
+
 			include_once(ABSPATH . '/views/layouts/' . $this->layout . '.php');
+
+			$out = ob_get_clean();
+
+			echo $out;
+		} else {
+			throw new Exception('No View at: ' . $template);
 		}
+
 		return true;
+
 	}
 
 	public function load_partial($template, $data = null, $buffer_output = false) {
